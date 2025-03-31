@@ -1,9 +1,8 @@
 import { AuthenticationError } from "apollo-server-express";
-import User from "../models/User.js"; // ✅ Default import
-import type { UserDocument } from "../models/User.js"; // ✅ Fix incorrect type import
+import User from "../models/User.js"; 
 import Thought from "../models/Thoughts.js";
-import signToken from "../services/signToken.js";
-import { Document } from "mongoose";
+import signToken from "../services/signToken.js";  
+
 
 
 
