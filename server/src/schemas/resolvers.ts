@@ -1,9 +1,10 @@
 import { AuthenticationError } from "apollo-server-express";
-import User from "../models/User.js";
-import type { User as UserType } from "../models/User.js";
+import User from "../models/User.js"; // ✅ Default import
+import type { UserDocument } from "../models/User.js"; // ✅ Fix incorrect type import
 import Thought from "../models/Thoughts.js";
-import { Document } from "mongoose";
 import signToken from "../services/signToken.js";
+import { Document } from "mongoose";
+
 
 
 interface User extends Document {
@@ -19,20 +20,6 @@ interface TokenPayload {
   _id: string;
   username: string;
 }
-
-const userSchema = new Schema<UserType>({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
-
-// Add methods to the schema
-userSchema.methods.isCorrectPassword = async function (password: string): Promise<boolean> {
-  // Add your password comparison logic here (e.g., bcrypt)
-  return password === this.password; // Replace with actual comparison logic
-};
-
-// Create the model
-export const UserModel = model<User>("User", userSchema);
 
 // Define types for GraphQL arguments
 interface AddUserArgs {
