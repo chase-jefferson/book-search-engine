@@ -1,18 +1,8 @@
 import { AuthenticationError } from "apollo-server-express";
-import User from "../models/User.js"; 
+import User from "../models/User.js";  // ✅ Default import
 import Thought from "../models/Thoughts.js";
 import signToken from "../services/signToken.js";  
 
-
-
-
-interface User extends Document {
-  _id: string; // or ObjectId if you're using Mongoose's ObjectId type
-  username: string;
-  isCorrectPassword: (password: string) => Promise<boolean>;
-}
-
-import { Schema, model } from "mongoose";
 
 // Define the TokenPayload interface
 interface TokenPayload {
